@@ -1,1 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
+.primary-color {
+    color: #FFFFFF;
+    background-color: #E95D59;
+}
+  
+.primary-color-dark {
+  color: #FFFFFF;
+  background-color: #D04F4F;
+}
+
+.secondary-color {
+  color: #FFFFFF;
+  background-color: #555555;
+}
+
+.secondary-color-light {
+  color: #FFFFFF;
+  background-color: #858585;
+}
+
+/*
+ * Web Specific
+ */
+body {
+    height: 100%;
+    font-family: 'Open Sans', sans-serif;
+}

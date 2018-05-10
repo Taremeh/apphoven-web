@@ -5,24 +5,37 @@
         </header>
         <main>
 
-            <iframe *ngIf="videoUrl" style="display:block; margin: 0 auto; max-width: 100%;" width="100%" height="400" [src]="videoUrl" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <div *ngIf="videoUrl" class="responsive-video">
+                    <iframe style="display:block; margin: 0 auto; max-width: 100%;" width="100%" height="400" [src]="videoUrl" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
             <br *ngIf="videoUrl" />
             
             <h2>About Me:</h2>
             <p>{{ user.userDescription }}</p>
-            <br />
 
-            <div *ngIf="user.userAwards">
+            <!--<div *ngIf="user.userAwards">
                 <h2>My Awards:</h2>
                 <ul>
-                    <li *ngFor="let award of userAwards">{{ award }}</li>
+                    <li *ngFor="let award of userAwards">{{ award.competition }}</li>
                 </ul>
             </div>
-            <br />
+            <br />-->
 
-            <div *ngIf="user.availableForHire">
+            <div *ngIf="userAwards" style="margin-top: 1.5em;">
+                <div class="award-item" *ngFor="let award of userAwards">
+                    <p class="award-year" *ngIf="award.year > 0">{{ award.year }}</p><br *ngIf="award.year == 0" /><br *ngIf="award.year == 0" />
+                    <div style="font-size:1.3em; color: #FFD151;">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <p><strong style="font-weight:700">{{ award.competition }} </strong><br /> {{ award.prize || "" }}</p>
+                </div>
+            </div>
+        
+
+            <div *ngIf="user.availableForHire" style="clear: left; margin-top: 3em">
                 <h2>Available For Hire:</h2>
                 <p *ngIf="(user.availableForHireDescription != '')">{{ user.availableForHireDescription }}</p>
+                <br />
                 <a href="mailto:{{user.availableForHireEmail}}" class="contact-button">CONTACT ME</a>
             </div>
         </main>
@@ -31,7 +44,18 @@
     <p>{{ user.userName }} uses <b><a href="https://apphoven.com" class="apphoven-link">Apphoven</a></b> to practice the piano. </p>
 </footer>
 
-<div *ngIf="!user.profileIsPublic" class="locked-container">
-        <h1 style="color: rgb(255, 225, 225)"><a href="https://apphoven.com" class="apphoven-link">Apphoven</a></h1>
-        <p>The requested profile is set to private</p>
+<div *ngIf="urlPathname && !user.profileIsPublic && dataLoaded" class="locked-container">
+    <h1 style="color: rgb(255, 225, 225)"><a href="https://apphoven.com" class="apphoven-link">Apphoven</a></h1>
+    <p>The requested profile is set to private</p>
+    <i class="fas fa-lock"></i>
+</div>
+
+<div *ngIf="!urlPathname" class="locked-container">
+    <h1 style="color: rgb(255, 225, 225)"><a href="https://apphoven.com" class="apphoven-link">Apphoven</a></h1>
+    <p>Apphoven User Portfolio Profiles</p>
+    <i class="fas fa-music"></i>
+</div>
+
+<div *ngIf="!dataLoaded" class="locked-container" style="padding-top: 5%">
+    <i class="fas fa-spinner fa-pulse fa-5x"></i>
 </div>

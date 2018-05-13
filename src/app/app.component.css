@@ -56,6 +56,16 @@ p, ul {
     padding: 0;
 }
 
+.info {
+    width: auto;
+    font-size: 0.8em;
+    padding: 1.5em;
+    margin-bottom: 2em;
+    border-radius: 2em;
+    background-color: yellow;
+    color: rgb(36, 36, 36);
+}
+
 .contact-button {
     padding: 0.5em;
     font-family: 'Lato', sans-serif;

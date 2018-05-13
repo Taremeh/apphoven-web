@@ -72,7 +72,7 @@ export class AppComponent implements OnInit {
 	initUser(){
 
 		// If userAwards exist => Split into Array
-		if(this.user.userAwards != ""){
+		if(this.user.userAwards != "" && this.user.userAwards != undefined){
 			this.userAwards = [];
 			this.userAwardsInput = [];
 			this.userAwardsInput = String(this.user.userAwards).split(",");
@@ -118,7 +118,7 @@ export class AppComponent implements OnInit {
 		}
 
 		// If YT-Video-ID exists, bypass security
-		if(this.user.userVideoLink != ""){
+		if(this.user.userVideoLink != "" && this.user.userVideoLink != undefined){
 			let videoLink = 'https://www.youtube.com/embed/' + this.user.userVideoLink;
 			this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(videoLink);
 		} else {

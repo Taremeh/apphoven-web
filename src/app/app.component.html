@@ -1,6 +1,7 @@
 <div *ngIf="user.profileIsPublic" class="main-container">
         <header>
             <h1>{{ user.userName }}</h1>
+            <p *ngIf="!user.userName" class="info">Change or rename your username in the Apphoven App by pressing on your name / email next to the profile picture.</p>
             <p class="subtitle">Pianist</p>
         </header>
         <main>
@@ -11,7 +12,7 @@
             <br *ngIf="videoUrl" />
             
             <h2>About Me:</h2>
-            <p>{{ user.userDescription }}</p>
+            <p>{{ user.userDescription ? user.userDescription : 'Nothing found: Add a short text and / or awards about you in the Apphoven App' }}</p>
 
             <!--<div *ngIf="user.userAwards">
                 <h2>My Awards:</h2>
@@ -41,7 +42,7 @@
         </main>
 </div>
 <footer *ngIf="user.profileIsPublic">
-    <p>{{ user.userName }} uses <b><a href="https://apphoven.com" class="apphoven-link">Apphoven</a></b> to practice the piano. </p>
+    <p>{{ user.userName ? user.userName : 'This pianist' }} uses <b><a href="https://apphoven.com" class="apphoven-link">Apphoven</a></b> to practice the piano. </p>
 </footer>
 
 <div *ngIf="urlPathname && !user.profileIsPublic && dataLoaded" class="locked-container">
